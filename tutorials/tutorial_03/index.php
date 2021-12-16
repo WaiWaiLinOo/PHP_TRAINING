@@ -44,7 +44,7 @@ function getAge($dob)
   return 'Your Current Age is : ' . $diff->y . ' Years Old Sir!';
 }
 ?>
-<h1 class="center">Calculate Age using PHP</h1>
+<h1 class="center">Calculate Age using PHP...</h1>
 <hr>
 <div class="form-wrapper">
   <form>
