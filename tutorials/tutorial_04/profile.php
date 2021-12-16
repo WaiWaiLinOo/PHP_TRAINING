@@ -20,7 +20,7 @@ if (!isset($_SESSION['user'])) {
     <h1 class="mb-3"> Wai Lin Oo (Manager)</h1>
     <ul class="list-group">
       <li class="list-group-item">
-        <b>Email:</b> wailinoo@gmail.com
+        <b>Email:</b> wailinoo.august@gmail.com
       </li>
       <li class="list-group-item">
         <b>Phone:</b> (09) 243 867 645
