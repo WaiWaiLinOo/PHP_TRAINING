@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>index.php</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Tutorial 5</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
@@ -58,6 +59,32 @@
     echo '</table>';
     ?>
     <hr>
+    <h2>Testing Doc file</h2>
+    <div>
+        <?php
+        require 'vendor/autoload.php';
+        error_reporting(E_ALL ^ E_DEPRECATED);
+        $dir = str_replace('\\', '/', __DIR__) . '/';
+        $source = $dir . 'sample.doc';
+        $phpWord = \PhpOffice\PhpWord\IOFactory::load($source);
+        foreach ($phpWord->getSections() as $section) {
+            foreach ($section->getElements() as $element) {
+                if ($element instanceof \PhpOffice\PhpWord\Element\TextRun) {
+                    foreach ($element->getElements() as $e) {
+                        if ($e instanceof \PhpOffice\PhpWord\Element\Text) {
+                            $style = $e->getFontStyle();
+                            $size = $style->getSize();
+                            $color = $style->getColor();
+                            echo '<p style="font-size:' . $size . 'px; color: #' . $color . '">'
+                                . $e->getText() . '</p>';
+                        }
+                    }
+                }
+            }
+        }
+        ?>
+    </div>
+
 </body>
 
 </html>

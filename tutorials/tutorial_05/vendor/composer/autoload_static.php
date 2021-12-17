@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit576dcedcb7a988ad09c06702b0cd69dc
+class ComposerStaticInitcbb0d60bd7205b6781a3f55327937dfa
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -25,12 +25,17 @@ class ComposerStaticInit576dcedcb7a988ad09c06702b0cd69dc
             'Psr\\SimpleCache\\' => 16,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Http\\Client\\' => 16,
+            'PhpOffice\\PhpWord\\' => 18,
             'PhpOffice\\PhpSpreadsheet\\' => 25,
         ),
         'M' => 
         array (
             'MyCLabs\\Enum\\' => 13,
             'Matrix\\' => 7,
+        ),
+        'L' => 
+        array (
+            'Laminas\\Escaper\\' => 16,
         ),
         'C' => 
         array (
@@ -53,12 +58,16 @@ class ComposerStaticInit576dcedcb7a988ad09c06702b0cd69dc
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-client/src',
+        ),
+        'PhpOffice\\PhpWord\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoffice/phpword/src/PhpWord',
         ),
         'PhpOffice\\PhpSpreadsheet\\' => 
         array (
@@ -71,6 +80,10 @@ class ComposerStaticInit576dcedcb7a988ad09c06702b0cd69dc
         'Matrix\\' => 
         array (
             0 => __DIR__ . '/..' . '/markbaker/matrix/classes/src',
+        ),
+        'Laminas\\Escaper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laminas/laminas-escaper/src',
         ),
         'Complex\\' => 
         array (
@@ -95,10 +108,10 @@ class ComposerStaticInit576dcedcb7a988ad09c06702b0cd69dc
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit576dcedcb7a988ad09c06702b0cd69dc::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit576dcedcb7a988ad09c06702b0cd69dc::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit576dcedcb7a988ad09c06702b0cd69dc::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit576dcedcb7a988ad09c06702b0cd69dc::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitcbb0d60bd7205b6781a3f55327937dfa::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitcbb0d60bd7205b6781a3f55327937dfa::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitcbb0d60bd7205b6781a3f55327937dfa::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitcbb0d60bd7205b6781a3f55327937dfa::$classMap;
 
         }, null, ClassLoader::class);
     }
