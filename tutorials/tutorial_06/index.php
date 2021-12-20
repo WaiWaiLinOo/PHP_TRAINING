@@ -15,13 +15,13 @@
         <h1 class="text-center mt-3">Image uploaded form</h1>
         <?php if (isset($_GET['error'])) : ?>
             <div class="alert alert-warning">
-                Cannot upload file, Try again!
+                Cannot upload file!
             </div>
         <?php endif ?>
         <div class="m-4">
             <form action="_actions/upload.php" method="post" enctype="multipart/form-data">
-                <input type="file" name="photo" class="form-control mb-3">
-                <input type="text" class="form-control mb-3" name="foldername" placeholder="Enter Your folder">
+                <input type="file" name="fileToUpload" class="form-control mb-3" id="fileToUpload">
+                <input type="text" class="form-control mb-3" name="foldername" placeholder="Enter Your folder name">
                 <input type="submit" class="btn btn-outline-primary" name="submit" value="Create Folder and upload image">
             </form>
         </div>
