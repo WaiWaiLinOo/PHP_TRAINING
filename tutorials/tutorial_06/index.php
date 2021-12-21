@@ -19,7 +19,7 @@
             </div>
         <?php endif ?>
         <div class="m-4">
-            <form action="_actions/upload.php" method="post" enctype="multipart/form-data">
+            <form action="upload.php" method="post" enctype="multipart/form-data">
                 <input type="file" name="fileToUpload" class="form-control mb-3" id="fileToUpload">
                 <input type="text" class="form-control mb-3" name="foldername" placeholder="Enter Your folder name">
                 <input type="submit" class="btn btn-outline-primary" name="submit" value="Create Folder and upload image">
