@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <form action="php/create.php" method="post">
-            <h4 class="display-4 text-center">Create</h4>
+            <h4 class="display-4 text-center">Create.</h4>
             <hr><br>
             <?php if (isset($_GET['error'])) { ?>
                 <div class="alert alert-danger" role="alert">
