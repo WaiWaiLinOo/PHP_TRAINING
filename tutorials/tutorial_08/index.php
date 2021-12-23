@@ -1,3 +1,4 @@
+<?php include "php/read.php"; ?>
 <!DOCTYPE html>
 <html>
 
@@ -9,42 +10,52 @@
 
 <body>
     <div class="container">
-        <form action="php/create.php" method="post">
-            <h4 class="display-4 text-center">Create.</h4>
-            <hr><br>
-            <?php if (isset($_GET['error'])) { ?>
-                <div class="alert alert-danger" role="alert">
-                    <?php echo $_GET['error']; ?>
+        <div class="box">
+            <h4 class="display-4 text-center">Read Table Page</h4><br>
+            <?php if (isset($_GET['success'])) { ?>
+                <div class="alert alert-success" role="alert">
+                    <?php echo $_GET['success']; ?>
                 </div>
             <?php } ?>
-            <div class="form-group">
-                <label for="fname">First Name</label>
-                <input type="name" class="form-control" id="fname" name="fname" value="<?php if (isset($_GET['fname']))
-                                                                                            echo ($_GET['fname']); ?>" placeholder="Enter first name">
+            <?php if (mysqli_num_rows($result)) { ?>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phnumber</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $i = 0;
+                        while ($rows = mysqli_fetch_assoc($result)) {
+                            $i++;
+                        ?>
+                            <tr>
+                                <th scope="row"><?= $i ?></th>
+                                <td><?= $rows['fname'] ?></td>
+                                <td><?= $rows['lname'] ?></td>
+                                <td><?php echo $rows['email']; ?></td>
+                                <td><?= $rows['phnumber'] ?></td>
+                                <td><?= $rows['address'] ?></td>
+
+                                <td><a href="update.php?id=<?= $rows['id'] ?>" class="btn btn-success">Update</a>
+                                    <a href="delete.php" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            <?php } ?>
+            <div class="link-right">
+                <a href="create.php" class="link-primary">Create</a>
             </div>
-            <div class="form-group">
-                <label for="lname">Last Name</label>
-                <input type="name" class="form-control" id="lname" name="lname" value="<?php if (isset($_GET['lname']))
-                                                                                            echo ($_GET['lname']); ?>" placeholder="Enter last name">
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="<?php if (isset($_GET['email']))
-                                                                                            echo ($_GET['email']); ?>" placeholder="Enter email">
-            </div>
-            <div class="form-group">
-                <label for="phnumber">Ph number</label>
-                <input type="num" class="form-control" id="phnumber" name="phnumber" value="<?php if (isset($_GET['phnumber']))
-                                                                                                echo ($_GET['phnumber']); ?>" placeholder="Enter phnumber">
-            </div>
-            <div class="form-group">
-                <label for="address">Address</label>
-                <input type="name" class="form-control" id="address" name="address" value="<?php if (isset($_GET['address']))
-                                                                                                echo ($_GET['address']); ?>" placeholder="Enter your address">
-            </div>
-            <button type="submit" class="btn btn-primary" name="create">Create</button>
-            <a href="read.php" class="link-primary">View</a>
-        </form>
+        </div>
     </div>
 </body>
 

@@ -16,23 +16,23 @@ if (isset($_POST['create'])) {
     $address = validate($_POST['address']);
     $user_data = 'fname=' . $fname . '&lname=' . $lname . '&email=' . $email . '&phnumber=' . $phnumber . '&address=' . $address;
     if (empty($fname)) {
-        header("Location: ../index.php?error= First name is required&$user_data");
+        header("Location: ../create.php?error= First name is required&$user_data");
     } else if (empty($lname)) {
-        header("Location: ../index.php?error= Last name is required&$user_data");
+        header("Location: ../create.php?error= Last name is required&$user_data");
     } else if (empty($email)) {
-        header("Location: ../index.php?error= Email is required&$user_data");
+        header("Location: ../create.php?error= Email is required&$user_data");
     } else if (empty($phnumber)) {
-        header("Location: ../index.php?error= Phnumber is required&$user_data");
+        header("Location: ../create.php?error= Phnumber is required&$user_data");
     } else if (empty($address)) {
-        header("Location: ../index.php?error= Address is required&$user_data");
+        header("Location: ../create.php?error= Address is required&$user_data");
     } else {
         $sql = "INSERT INTO users(fname, lname, email, phnumber, address) 
                VALUES('$fname','$lname', '$email','$phnumber','$address')";
         $result = mysqli_query($conn, $sql);
         if ($result) {
-            header("Location: ../read.php?success=successfully created");
+            header("Location: ../index.php?success=successfully created");
         } else {
-            header("Location: ../index.php?error=unknown error occurred&$user_data");
+            header("Location: ../create.php?error=unknown error occurred&$user_data");
         }
     }
 }

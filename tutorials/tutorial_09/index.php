@@ -22,12 +22,9 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">First name</th>
-                            <th scope="col">Last name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Phnumber</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Year</th>
+                            <th scope="col">Age</th>
+                           
                         </tr>
                     </thead>
                     <tbody>
@@ -38,11 +35,9 @@
                         ?>
                             <tr>
                                 <th scope="row"><?= $i ?></th>
-                                <td><?= $rows['fname'] ?></td>
-                                <td><?= $rows['lname'] ?></td>
-                                <td><?php echo $rows['email']; ?></td>
-                                <td><?= $rows['phnumber'] ?></td>
-                                <td><?= $rows['address'] ?></td>
+                                <td><?= $rows['year'] ?></td>
+                                <td><?= $rows['age'] ?></td>
+                                
 
                                 <td><a href="update.php?id=<?= $rows['id'] ?>" class="btn btn-success">Update</a>
                                     <a href="php/delete.php?id=<?= $rows['id'] ?>" class="btn btn-danger">Delete</a>
@@ -53,7 +48,8 @@
                 </table>
             <?php } ?>
             <div class="link-right">
-                <a href="index.php" class="link-primary">Create</a>
+                <a href="create.php" class="link-primary mr-5">Create</a>
+                <a href="graph.php" class="link-primary">View graph</a>
             </div>
         </div>
     </div>
