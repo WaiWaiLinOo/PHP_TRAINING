@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <form action="php/update.php" method="post">
-            <h4 class="display-4 text-center">Update</h4>
+            <h4 class="display-4 text-center">Update Page</h4>
             <hr><br>
             <?php if (isset($_GET['error'])) { ?>
                 <div class="alert alert-danger" role="alert">
@@ -19,14 +19,33 @@
                 </div>
             <?php } ?>
             <div class="form-group">
-                <label for="year">Enter Year</label>
+                <label for="fname">First name</label>
+                <input type="name" class="form-control" id="fname" name="fname" value="<?= $row['fname'] ?>">
+            </div>
+            <div class="form-group">
+                <label for="lname">Last name</label>
+                <input type="name" class="form-control" id="lname" name="lname" value="<?= $row['lname'] ?>">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="<?= $row['email'] ?>">
+            </div>
+            <div class="form-group">
+                <label for="phnumber">Ph.no</label>
+                <input type="num" class="form-control" id="phnumber" name="phnumber" value="<?= $row['phnumber'] ?>">
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="name" class="form-control" id="address" name="address" value="<?= $row['address'] ?>">
+            </div>
+            <div class="form-group">
+                <label for="year">Year</label>
                 <input type="name" class="form-control" id="year" name="year" value="<?= $row['year'] ?>">
             </div>
             <div class="form-group">
-                <label for="age">Enter age</label>
+                <label for="age">Age</label>
                 <input type="name" class="form-control" id="age" name="age" value="<?= $row['age'] ?>">
             </div>
-           
             <input type="text" name="id" value="<?= $row['id'] ?>" hidden>
             <button type="submit" class="btn btn-primary" name="update">Update</button>
             <a href="index.php" class="link-primary">View</a>

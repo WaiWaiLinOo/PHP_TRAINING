@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>Create</title>
+    <title>Read Page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <div class="box">
-            <h4 class="display-4 text-center">Read</h4><br>
+            <h4 class="display-4 text-center">Read Table Page</h4><br>
             <?php if (isset($_GET['success'])) { ?>
                 <div class="alert alert-success" role="alert">
                     <?php echo $_GET['success']; ?>
@@ -22,8 +22,14 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phnumber</th>
+                            <th scope="col">Address</th>
                             <th scope="col">Year</th>
                             <th scope="col">Age</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,8 +40,14 @@
                         ?>
                             <tr>
                                 <th scope="row"><?= $i ?></th>
+                                <td><?= $rows['fname'] ?></td>
+                                <td><?= $rows['lname'] ?></td>
+                                <td><?php echo $rows['email']; ?></td>
+                                <td><?= $rows['phnumber'] ?></td>
+                                <td><?= $rows['address'] ?></td>
                                 <td><?= $rows['year'] ?></td>
                                 <td><?= $rows['age'] ?></td>
+
                                 <td><a href="update.php?id=<?= $rows['id'] ?>" class="btn btn-success">Update</a>
                                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"> Delete</button>
                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
