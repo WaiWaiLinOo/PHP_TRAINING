@@ -19,7 +19,7 @@
                 </div>
             <?php } ?>
             <div class="form-group">
-                <label for="fname">First name</label>
+                <label for="fname">First name.</label>
                 <input type="name" class="form-control" id="fname" name="fname" value="<?= $row['fname'] ?>">
             </div>
             <div class="form-group">
