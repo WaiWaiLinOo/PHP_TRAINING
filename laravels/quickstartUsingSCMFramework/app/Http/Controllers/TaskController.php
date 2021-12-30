@@ -10,25 +10,38 @@ use App\Http\Controllers\Controller;
 
 class TaskController extends Controller
 {
+    /**
+     * task interface
+     */
     private $taskInterface;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct(TaskServiceInterface $taskServiceInterface)
     {
         $this->taskInterface = $taskServiceInterface;
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $tasks = $this->taskInterface->getTaskList();
         return view('tasks', ['tasks' => $tasks]);
     }
 
-
-    public function create()
-    {
-        //
-    }
-
-
+     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -50,26 +63,14 @@ class TaskController extends Controller
                 ->with('success', 'Task created successfully.');
         }
     }
+    
 
-
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-
+     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Task  $task
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Task $task)
     {
         $result = $this->taskInterface->deleteTask($task);
