@@ -62,7 +62,8 @@ class StudentController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->withErrors($validator);
+            return back()->withErrors($validator)->withInput();
+            
         }
         $student = $this->studentInterface->saveStudent($request);
         if ($student) {

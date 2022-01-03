@@ -23,11 +23,12 @@
         <div class="card-body">
 
           <form action="{{ url('add-student') }}" method="POST" enctype="multipart/form-data">
-            @csrf
+            <!--@csrf-->
+            {{ csrf_field() }}
 
             <div class="form-group mb-3">
               <label for="name">Student Name</label>
-              <input type="text" name="name" value="{{ old('name') }}" class="form-control">
+              <input type="text"  class="form-control" name="name" value="{{ old('name') }}" >
             </div>
             <div class="form-group mb-3">
               <label for="email">Student Email</label>
