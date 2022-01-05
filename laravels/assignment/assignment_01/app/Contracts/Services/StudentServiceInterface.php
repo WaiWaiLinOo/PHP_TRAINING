@@ -45,31 +45,31 @@ interface StudentServiceInterface
      */
     public function deleteStudent($id);
 
-     /**
-     * To save getexportpdf()
+    /**
+     * To save getpdf()
      * @param Request $request request with inputs
      * @return Object $post saved post
      */
-    public function getexportpdf();
+    public function getExportPdf();
 
      /**
      * To save getexcel()
      * @param Request $request request with inputs
      * @return Object $post saved post
      */
-    public function getexportexcel();
+    public function getExportExcel();
 
      /**
      * To save getcsv()
      * @param Request $request request with inputs
      * @return Object $post saved post
      */
-    public function getexportcsv();
+    public function getExportCsv();
 
      /**
      * To save getimportexcel()
      * @param Request $request request with inputs
      * @return Object $post saved post
      */
-    public function getimportexcel(Request $request);
+    public function getImportExcel(Request $request);
 }

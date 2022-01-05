@@ -13,9 +13,9 @@
           <h4>Laravel 8 IMAGE CRUD
             <a href="{{ url('add-student') }}" class="btn btn-primary float-end">Add Student</a>
           </h4>
-          <a class="btn btn-info mt-4" href="/exportpdf"> Export PDF</a>
-          <a class="btn btn-success mt-4" href="/exportexcel"> Export EXCEL</a>
-          <a class="btn btn-warning mt-4" href="/exportcsv"> Export CSV</a>
+          <a class="btn btn-info mt-4" href="/export-pdf"> Export PDF</a>
+          <a class="btn btn-success mt-4" href="/export-excel"> Export EXCEL</a>
+          <a class="btn btn-warning mt-4" href="/export-csv"> Export CSV</a>
           <!--import -->
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-primary mt-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -29,7 +29,7 @@
                   <h5 class="modal-title" id="exampleModalLabel">Exel file</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/importexcel" method="POST" enctype="multipart/form-data">
+                <form action="/import-excel" method="POST" enctype="multipart/form-data">
                   @csrf
                   <div class="modal-body">
                     <div class="form-group">

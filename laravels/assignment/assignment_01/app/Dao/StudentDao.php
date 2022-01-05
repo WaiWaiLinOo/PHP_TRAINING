@@ -34,10 +34,10 @@ class StudentDao implements StudentDaoInterface
     public function saveStudent(Request $request)
     {
         $student = new Student;
-        $student->name = $request->input('name');
-        $student->email = $request->input('email');
-        $student->major_id = $request->input('major_id');
-        $student->course = $request->input('course');
+        $student->name = $request->name;
+        $student->email = $request->email;
+        $student->major_id = $request->major_id;
+        $student->course = $request->course;
         if ($request->hasfile('profile_image')) {
             $file = $request->file('profile_image');
             $extention = $file->getClientOriginalExtension();
@@ -105,7 +105,7 @@ class StudentDao implements StudentDaoInterface
     }
 
     //to getexportpdf 
-    public function getexportpdf()
+    public function getExportPdf()
     {
         $student = Student::all();
         view()->share('students', $student);
@@ -114,19 +114,19 @@ class StudentDao implements StudentDaoInterface
     }
 
     //to getexportexcel 
-    public function getexportexcel()
+    public function getExportExcel()
     {
         return Excel::download(new StudentExport, 'data.xlsx');
     }
 
     //to getexportcsv 
-    public function getexportcsv()
+    public function getExportCsv()
     {
         return Excel::download(new StudentExport, 'data.csv');
     }
 
     //to getimportexcel 
-    public function getimportexcel(Request $request)
+    public function getImportExcel(Request $request)
     {
         $data = $request->file('file');
         $namefile = $data->getClientOriginalName();

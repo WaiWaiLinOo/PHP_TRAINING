@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Major;
 use PDF;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Requests\StoreStudentRequest;
+
 
 
 /**
@@ -34,6 +36,7 @@ class StudentController extends Controller
     {
         $this->studentInterface = $studentServiceInterface;
     }
+   
     public function index()
     {
         $student = $this->studentInterface->getStudentList();
@@ -54,22 +57,9 @@ class StudentController extends Controller
      * @param PostCreateRequest $request Request form post create
      * @return View post store confirm
      */
-    public function store(Request $request)
+    public function store(StoreStudentRequest $request)
     {
-
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required',
-            'major_id' => 'required',
-            'course' => 'required',
-            'profile_image' => 'required',
-
-        ]);
-
-        if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
-        }
-        $student = $this->studentInterface->saveStudent($request);
+       $student = $this->studentInterface->saveStudent($request);
         if ($student) {
             return redirect('/')->with('status', 'Student and Image Added Successfully');
         }
@@ -95,18 +85,8 @@ class StudentController extends Controller
      * @param PostCreateRequest $request Request form post create
      * @return View post update confirm
      */
-    public function update(Request $request, $id)
+    public function update(StoreStudentRequest $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required',
-            'major_id' => 'required',
-            'course' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return back()->withErrors($validator);
-        }
         $student = $this->studentInterface->updateStudent($request, $id);
         if ($student) {
             return redirect('/')->with('status', 'Student and Image Updated Successfully');
@@ -127,30 +107,30 @@ class StudentController extends Controller
     }
 
     //to exportpdf 
-    public function exportpdf()
+    public function exportPdf()
     {
-        $student = $this->studentInterface->getexportpdf();
+        $student = $this->studentInterface->getExportPdf();
         return $student;
     }
 
     //to exportexcel 
-    public function  exportexcel()
+    public function  exportExcel()
     {
-        $student = $this->studentInterface->getexportexcel();
+        $student = $this->studentInterface->getExportExcel();
         return $student;
     }
 
     //to exportcsv 
-    public function  exportcsv()
+    public function  exportCsv()
     {
-        $student = $this->studentInterface->getexportcsv();
+        $student = $this->studentInterface->getExportCsv();
         return $student;
     }
 
     //to importexcel 
-    public function importexcel(Request $request)
+    public function importExcel(Request $request)
     {
-        $student = $this->studentInterface->getimportexcel($request);
+        $student = $this->studentInterface->getImportExcel($request);
         return $student;
     }
 }

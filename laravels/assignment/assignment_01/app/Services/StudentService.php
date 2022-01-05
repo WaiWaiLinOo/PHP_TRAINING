@@ -77,26 +77,26 @@ class StudentService implements StudentServiceInterface
     }
 
     //to getexportpdf 
-    public function getexportpdf()
+    public function getExportPdf()
     {
-        return $this->studentDao->getexportpdf();
+        return $this->studentDao->getExportPdf();
     }
 
     //to getexportexcel 
-    public function getexportexcel()
+    public function getExportExcel()
     {
-        return $this->studentDao->getexportexcel();
+        return $this->studentDao->getExportExcel();
     }
 
     //to getexportcsv 
-    public function getexportcsv()
+    public function getExportCsv()
     {
-        return $this->studentDao->getexportcsv();
+        return $this->studentDao->getExportCsv();
     }
 
     //to getimportexcel 
-    public function getimportexcel(Request $request)
+    public function getImportExcel(Request $request)
     {
-        return $this->studentDao->getimportexcel($request);
+        return $this->studentDao->getImportExcel($request);
     }
 }

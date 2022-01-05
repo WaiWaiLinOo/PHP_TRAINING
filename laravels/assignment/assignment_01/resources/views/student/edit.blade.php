@@ -5,17 +5,6 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-
-      @if($errors->any())
-      <div class="alert alert-danger">
-        <ol>
-          @foreach($errors->all() as $error)
-          <li>{{ $error }}</li>
-          @endforeach
-        </ol>
-      </div>
-      @endif
-
       <div class="card">
         <div class="card-header">
           <h4>Edit Student with IMAGE
@@ -30,11 +19,17 @@
 
             <div class="form-group mb-3">
               <label for="">Student Name</label>
-              <input type="text" name="name" value="{{$student->name}}" class="form-control">
+              <input type="text" name="name" value="{{$student->name}}" class="form-control @error('name') is-invalid @enderror">
+              @error('name')
+              <p style="color: red; margin-bottom:25px;">{{$message}}</p>
+              @enderror
             </div>
             <div class="form-group mb-3">
               <label for="">Student Email</label>
-              <input type="text" name="email" value="{{$student->email}}" class="form-control">
+              <input type="text" name="email" value="{{$student->email}}" class="form-control @error('email') is-invalid @enderror">
+              @error('email')
+              <p style="color: red; margin-bottom:25px;">{{$message}}</p>
+              @enderror
             </div>
             <div class="form-group mb-3">
               <label>Major</label>
@@ -48,7 +43,10 @@
             </div>
             <div class="form-group mb-3">
               <label for="">Student Course</label>
-              <input type="text" name="course" value="{{$student->course}}" class="form-control">
+              <input type="text" name="course" value="{{$student->course}}" class="form-control @error('course') is-invalid @enderror">
+              @error('course')
+              <p style="color: red; margin-bottom:25px;">{{$message}}</p>
+              @enderror
             </div>
             <div class="form-group mb-3">
               <label for="">Student Profile Image</label>

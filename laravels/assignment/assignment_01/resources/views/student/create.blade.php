@@ -5,15 +5,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      @if($errors->any())
-      <div class="alert alert-danger">
-        <ol>
-          @foreach($errors->all() as $error)
-          <li>{{ $error }}</li>
-          @endforeach
-        </ol>
-      </div>
-      @endif
+
       <div class="card">
         <div class="card-header">
           <h4>Add Student with IMAGE
@@ -27,12 +19,20 @@
             {{ csrf_field() }}
 
             <div class="form-group mb-3">
+
               <label for="name">Student Name</label>
-              <input type="text"  class="form-control" name="name" value="{{ old('name') }}" >
+              <input type="text" class="form-control  @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}">
+              @error('name')
+              <p style="color: red; margin-bottom:25px;">{{$message}}</p>
+              @enderror
+
             </div>
             <div class="form-group mb-3">
               <label for="email">Student Email</label>
-              <input type="text" name="email" value="{{ old('email') }}" class="form-control">
+              <input type="text" name="email" value="{{ old('email') }}" class="form-control  @error('email') is-invalid @enderror">
+              @error('email')
+              <p style="color: red; margin-bottom:25px;">{{$message}}</p>
+              @enderror
             </div>
             <div class="form-group mb-3">
               <label>Major</label>
@@ -46,7 +46,10 @@
             </div>
             <div class="form-group mb-3">
               <label for="">Student Course</label>
-              <input type="text" name="course" value="{{ old('course') }}" class="form-control">
+              <input type="text" name="course" value="{{ old('course') }}" class="form-control  @error('course') is-invalid @enderror">
+              @error('course')
+              <p style="color: red; margin-bottom:25px;">{{$message}}</p>
+              @enderror
             </div>
             <div class="form-group mb-3">
               <label for="">Student Profile Image</label>
