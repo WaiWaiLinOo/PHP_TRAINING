@@ -75,4 +75,28 @@ class StudentService implements StudentServiceInterface
     {
         return $this->studentDao->deleteStudent($id);
     }
+
+    //to getexportpdf 
+    public function getexportpdf()
+    {
+        return $this->studentDao->getexportpdf();
+    }
+
+    //to getexportexcel 
+    public function getexportexcel()
+    {
+        return $this->studentDao->getexportexcel();
+    }
+
+    //to getexportcsv 
+    public function getexportcsv()
+    {
+        return $this->studentDao->getexportcsv();
+    }
+
+    //to getimportexcel 
+    public function getimportexcel(Request $request)
+    {
+        return $this->studentDao->getimportexcel($request);
+    }
 }

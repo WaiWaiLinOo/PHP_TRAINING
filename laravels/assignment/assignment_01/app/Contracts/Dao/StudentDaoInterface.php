@@ -44,4 +44,32 @@ interface StudentDaoInterface
      * @return Object $post post object
      */
     public function deleteStudent($id);
+
+    /**
+     * To save getpdf()
+     * @param Request $request request with inputs
+     * @return Object $post saved post
+     */
+    public function getexportpdf();
+
+     /**
+     * To save getexcel()
+     * @param Request $request request with inputs
+     * @return Object $post saved post
+     */
+    public function getexportexcel();
+
+     /**
+     * To save getcsv()
+     * @param Request $request request with inputs
+     * @return Object $post saved post
+     */
+    public function getexportcsv();
+
+     /**
+     * To save getimportexcel()
+     * @param Request $request request with inputs
+     * @return Object $post saved post
+     */
+    public function getimportexcel(Request $request);
 }

@@ -6,8 +6,13 @@ use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\Contracts\Services\StudentServiceInterface;
+use App\Exports\StudentExport;
+use App\Imports\StudentImport;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Major;
+use PDF;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 /**
  * This is student controller.
@@ -63,7 +68,6 @@ class StudentController extends Controller
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
-            
         }
         $student = $this->studentInterface->saveStudent($request);
         if ($student) {
@@ -120,5 +124,33 @@ class StudentController extends Controller
         if ($student) {
             return redirect()->back()->with('status', 'Student and Image Deleted Successfully');
         }
+    }
+
+    //to exportpdf 
+    public function exportpdf()
+    {
+        $student = $this->studentInterface->getexportpdf();
+        return $student;
+    }
+
+    //to exportexcel 
+    public function  exportexcel()
+    {
+        $student = $this->studentInterface->getexportexcel();
+        return $student;
+    }
+
+    //to exportcsv 
+    public function  exportcsv()
+    {
+        $student = $this->studentInterface->getexportcsv();
+        return $student;
+    }
+
+    //to importexcel 
+    public function importexcel(Request $request)
+    {
+        $student = $this->studentInterface->getimportexcel($request);
+        return $student;
     }
 }

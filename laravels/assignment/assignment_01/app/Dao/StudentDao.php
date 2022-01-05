@@ -6,6 +6,10 @@ use App\Contracts\Dao\StudentDaoInterface;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use Illuminate\Support\Facades\File;
+use App\Exports\StudentExport;
+use App\Imports\StudentImport;
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 /**
  * Data accessing object for post
@@ -98,5 +102,36 @@ class StudentDao implements StudentDaoInterface
         }
         $student->delete();
         return $student;
+    }
+
+    //to getexportpdf 
+    public function getexportpdf()
+    {
+        $student = Student::all();
+        view()->share('students', $student);
+        $pdf = PDF::loadview('exportpdf');
+        return $pdf->download('data.pdf');
+    }
+
+    //to getexportexcel 
+    public function getexportexcel()
+    {
+        return Excel::download(new StudentExport, 'data.xlsx');
+    }
+
+    //to getexportcsv 
+    public function getexportcsv()
+    {
+        return Excel::download(new StudentExport, 'data.csv');
+    }
+
+    //to getimportexcel 
+    public function getimportexcel(Request $request)
+    {
+        $data = $request->file('file');
+        $namefile = $data->getClientOriginalName();
+        $data->move('StudentData', $namefile);
+        Excel::import(new StudentImport, public_path('/StudentData/' . $namefile));
+        return redirect()->back();
     }
 }
