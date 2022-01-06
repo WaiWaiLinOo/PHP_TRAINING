@@ -15,7 +15,7 @@ interface StudentServiceInterface
      * @param Request $request request with inputs
      * @return Object $post saved post
      */
-    public function getStudentList();
+    public function getStudentList(Request $request);
 
     /**
      * To save

@@ -13,6 +13,7 @@ use App\Models\Major;
 use PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\StoreStudentRequest;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -37,10 +38,11 @@ class StudentController extends Controller
         $this->studentInterface = $studentServiceInterface;
     }
    
-    public function index()
+    public function index(Request $request)
     {
-        $student = $this->studentInterface->getStudentList();
+        $student = $this->studentInterface->getStudentList($request);
         return view('student.index', compact('student'));
+        
     }
 
     public function create()
@@ -48,7 +50,7 @@ class StudentController extends Controller
 
         $data = Major::all();
         return view('student.create', [
-            'majors' => $data
+            'majors' => $data,
         ]);
     }
 

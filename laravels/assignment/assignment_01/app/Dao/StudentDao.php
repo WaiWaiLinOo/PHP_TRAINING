@@ -10,6 +10,7 @@ use App\Exports\StudentExport;
 use App\Imports\StudentImport;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Data accessing object for post
@@ -21,9 +22,24 @@ class StudentDao implements StudentDaoInterface
      * @param Request $request request with inputs
      * @return Object $post saved post
      */
-    public function getStudentList()
+    public function getStudentList(Request $request)
     {
-        return Student::all();
+        $name = $request->input('name');
+        $fromDate = $request->input('fromDate');
+        $toDate = $request->input('toDate');
+        $students = DB::table('students')
+                ->join('majors','students.major_id', '=','majors.id')
+                ->select('students.*','majors.majorname');
+       if ($name) {
+            $students->where('students.name', 'LIKE', '%' . $name . '%');
+        }
+        if ($fromDate) {
+            $students->whereDate('students.created_at', '>=', $fromDate);
+        }
+        if ($toDate) {
+            $students->whereDate('students.created_at', '<=', $toDate);
+        }
+        return $students->get();
     }
 
     /**

@@ -45,6 +45,35 @@
             </div>
           </div>
           <!--import -->
+          <!--search -->
+          <form action="/" method="GET">
+            @csrf
+            <br>
+            <div class="container">
+              <div class="row">
+                <div class="container-fluid">
+                  <div class="form-group row">
+                    <label for="name" class="col-form-label col-sm-1">Name</label>
+                    <div class="col-sm-2">
+                      <input type="text" class="form-control input-sm" id="name" name="name" >
+                    </div>
+                    <label for="date" class="col-form-label col-sm-1">From</label>
+                    <div class="col-sm-2">
+                      <input type="date" class="form-control input-sm" id="from" name="fromDate">
+                    </div>
+                    <label for="date" class="col-form-label col-sm-1">To</label>
+                    <div class="col-sm-2">
+                      <input type="date" class="form-control input-sm" id="to" name="toDate">
+                    </div>
+                    <div class="col-sm-2">
+                      <button type="submit" class="btn btn-outline-success" name="search" title="Search">Search</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          <!--search -->
         </div>
         <div class="card-body">
 
@@ -67,7 +96,7 @@
                 <td>{{ $item->id }}</td>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->email }}</td>
-                <td>{{ $item->Major->name}}</td>
+                <td>{{$item->majorname}}</td>
                 <td>{{ $item->course }}</td>
                 <td>
                   <img src="{{ asset('uploads/students/'.$item->profile_image) }}" width="70px" height="70px" alt="Image">
