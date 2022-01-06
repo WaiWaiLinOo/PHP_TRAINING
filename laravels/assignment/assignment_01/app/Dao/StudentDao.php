@@ -29,7 +29,9 @@ class StudentDao implements StudentDaoInterface
         $toDate = $request->input('toDate');
         $students = DB::table('students')
                 ->join('majors','students.major_id', '=','majors.id')
+                ->whereNull('students.deleted_at')
                 ->select('students.*','majors.major_name');
+                
        if ($name) {
             $students->where('students.name', 'LIKE', '%' . $name . '%');
         }
@@ -39,7 +41,7 @@ class StudentDao implements StudentDaoInterface
         if ($toDate) {
             $students->whereDate('students.created_at', '<=', $toDate);
         }
-        return $students->get();
+        return $students->get()->except('students.deleted_at');
     }
 
     /**
