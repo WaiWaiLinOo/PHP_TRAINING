@@ -41,7 +41,12 @@ class StudentController extends Controller
     public function index(Request $request)
     {
         $student = $this->studentInterface->getStudentList($request);
-        return view('student.index', compact('student'));
+        if($student){
+            return view('student.index', compact('student'));
+            //dd($student);
+        }
+       
+       
         
     }
 

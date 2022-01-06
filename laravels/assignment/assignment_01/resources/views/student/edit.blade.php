@@ -36,7 +36,7 @@
               <select class="form-select" name="major_id">
                 @foreach($majors as $major)
                 <option value="{{$major['id'] }}">
-                  {{$major['majorname'] }}
+                  {{$major['major_name'] }}
                 </option>
                 @endforeach
               </select>

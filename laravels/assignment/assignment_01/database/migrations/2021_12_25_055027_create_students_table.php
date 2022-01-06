@@ -20,9 +20,11 @@ class CreateStudentsTable extends Migration
             $table->integer('major_id');
             $table->string('course');
             $table->string('profile_image')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
-    }
+       
+     }
 
     /**
      * Reverse the migrations.
@@ -32,5 +34,6 @@ class CreateStudentsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('students');
+      
     }
 }

@@ -96,7 +96,7 @@
                 <td>{{ $item->id }}</td>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->email }}</td>
-                <td>{{$item->majorname}}</td>
+                <td>{{$item->major_name}}</td>
                 <td>{{ $item->course }}</td>
                 <td>
                   <img src="{{ asset('uploads/students/'.$item->profile_image) }}" width="70px" height="70px" alt="Image">
