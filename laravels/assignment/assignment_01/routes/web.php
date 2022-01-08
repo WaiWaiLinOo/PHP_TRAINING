@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
-
+//Api for 
+Route::get('fetch-students', [StudentApiController::class, 'fetchstudent']);
 Route::get('/', [StudentController::class, 'index']);
 Route::get('students', [StudentController::class, 'index']);
 Route::get('add-student', [StudentController::class, 'create']);

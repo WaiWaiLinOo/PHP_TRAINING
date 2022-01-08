@@ -27,7 +27,7 @@ class StoreStudentRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required',
-            'major_id' => 'required',
+           
             'course' => 'required',
         ];
     }
@@ -36,7 +36,7 @@ class StoreStudentRequest extends FormRequest
         return [
             'name.required' => 'The name field is required',
             'email.required' => 'The email field is required',
-            'major_id.required' => 'The major field is required',
+           
             'course.required' => 'The course field is required',
         ];
     }

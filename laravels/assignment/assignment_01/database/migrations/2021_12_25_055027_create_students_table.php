@@ -17,7 +17,7 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->integer('major_id');
+            $table->integer('major_id')->nullable();
             $table->string('course');
             $table->string('profile_image')->nullable();
             $table->softDeletes();
