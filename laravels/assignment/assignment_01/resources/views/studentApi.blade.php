@@ -23,8 +23,8 @@
           <input type="text" name="email" required class="email form-control">
         </div>
         <div class="mb-3">
-          <label for="major_name" class="form-label">Major</label>
-          <select class="major_name form-select" name="major_name">
+          <label for="major_id" class="form-label">Major</label>
+          <select class="major_id form-select" name="major_id">
           </select>
         </div>
         <div class="form-group mb-3">
@@ -66,17 +66,14 @@
           <input type="text" id="email" required class="form-control">
         </div>
         <div class="mb-3">
-          <label for="major_name" class="form-label">Major</label>
-          <select class="major_name form-select" id="major_name" name="major_name">
+          <label for="major_id" class="form-label">Major</label>
+          <select class="major_id form-select" id="major_id" name="major_id">
           </select>
         </div>
-
         <div class="form-group mb-3">
           <label for="">Course</label>
           <input type="text" id="course" required class="form-control">
         </div>
-
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -191,7 +188,7 @@
       var data = {
         'name': $('.name').val(),
         'email': $('.email').val(),
-        'major_name': $('.major_name').val(),
+        'major_id': $('.major_id').val(),
         'course': $('.course').val(),
         'major_name': $('.major_name').val(),
       }
@@ -267,9 +264,8 @@
       var data = {
         'name': $('#name').val(),
         'email': $('#email').val(),
-        'major_name': $('#major_name').val(),
+        'major_id': $('#major_id').val(),
         'course': $('#course').val(),
-
         'major_name': $('#major_name').val(),
       }
 

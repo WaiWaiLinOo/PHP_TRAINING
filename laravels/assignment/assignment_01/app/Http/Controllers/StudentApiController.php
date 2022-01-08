@@ -7,12 +7,28 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Major;
 use Illuminate\Support\Facades\DB;
+use App\Contracts\Services\StudentServiceInterface;
+
 /**
  * This is student controller.
  * This handles Post CRUD processing.
  */
 class StudentApiController extends Controller
 {
+    /**
+     * student interface
+     */
+    private $studentInterface;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(StudentServiceInterface $studentServiceInterface)
+    {
+        $this->studentInterface = $studentServiceInterface;
+    }
     public function index()
     {
         return view('studentApi');
@@ -57,16 +73,13 @@ class StudentApiController extends Controller
                 'errors' => $validator->messages()
             ]);
         } else {
-            $student = new Student;
-            $student->name = $request->input('name');
-            $student->email = $request->input('email');
-            $student->major_id = $request->input('major_name');
-            $student->course = $request->input('course');
-            $student->save();
-            return response()->json([
-                'status' => 200,
-                'message' => 'Student Added Successfully.'
-            ]);
+            $student = $this->studentInterface->saveStudent($request);
+            if ($student) {
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Student Added Successfully.'
+                ]);
+            }
         }
     }
 
@@ -78,7 +91,7 @@ class StudentApiController extends Controller
      */
     public function edit($id)
     {
-        $student = Student::find($id);
+        $student = $this->studentInterface->editStudent($id);
         if ($student) {
             return response()->json([
                 'status' => 200,
@@ -104,7 +117,6 @@ class StudentApiController extends Controller
             'name' => 'required',
             'course' => 'required',
             'email' => 'required',
-
         ]);
 
         if ($validator->fails()) {
@@ -113,13 +125,8 @@ class StudentApiController extends Controller
                 'errors' => $validator->messages()
             ]);
         } else {
-            $student = Student::find($id);
+            $student = $this->studentInterface->updateStudent($request, $id);
             if ($student) {
-                $student->name = $request->input('name');
-                $student->email = $request->input('email');
-                $student->major_id = $request->input('major_name');
-                $student->course = $request->input('course');
-                $student->update();
                 return response()->json([
                     'status' => 200,
                     'message' => 'Student Updated Successfully.'
@@ -140,9 +147,8 @@ class StudentApiController extends Controller
      */
     public function destroy($id)
     {
-        $student = Student::find($id);
-        if ($student) {
-            $student->delete();
+        $student = $this->studentInterface->deleteStudent($id);
+       if ($student) {
             return response()->json([
                 'status' => 200,
                 'message' => 'Student Deleted Successfully.'
