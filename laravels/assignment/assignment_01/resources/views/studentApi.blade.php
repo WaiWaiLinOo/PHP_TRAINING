@@ -170,15 +170,25 @@
                             <td><button type="button" value="' + item.id + '" class="btn btn-danger deletebtn btn-sm">Delete</button></td>\
                         \</tr>');
           });
-          $.each(response.major, function(key, items) {
-            $('select').append(
-              `<option value="${items.id}">${items.major_name}</option>`
-            );
-          });
-          console.log(response);
+
         }
       });
     }
+
+    $.ajax({
+      type: "GET",
+      url: "http://127.0.0.1:8000/api/fetch-students",
+      dataType: "json",
+      success: function(response) {
+        $.each(response.major, function(key, items) {
+          $('select').append(
+            `<option value="${items.id}">${items.major_name}</option>`
+          );
+        });
+        console.log(response);
+      }
+    });
+
 
     $(document).on('click', '.add_student', function(e) {
       e.preventDefault();
