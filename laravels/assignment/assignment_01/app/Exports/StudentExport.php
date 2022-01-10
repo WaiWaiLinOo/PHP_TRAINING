@@ -13,20 +13,19 @@ class StudentExport implements FromCollection
      */
     public function collection()
     {
-        //return Student::all();
-        //$student = DB::table('students')
-        //->join('majors','students.major_id', '=','majors.id')
-        //->whereNull('students.deleted_at')
-        //->select('students.*','majors.major_name')
-        //->get();
-        return Student::select([
+       
+        return DB::table('students')
+        ->join('majors','students.major_id', '=','majors.id')
+        ->whereNull('students.deleted_at')
+        ->select([
             'name',
             'email',
-            'major_name',
+            'majors.major_name',
             'course',
-            'created_at',
-            'updated_at'
-        ])->get();
-        //return $student;
+            'students.created_at',
+            'students.updated_at',
+        ])
+        ->get();
+       
     }
 }

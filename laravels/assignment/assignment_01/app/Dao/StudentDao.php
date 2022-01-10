@@ -128,7 +128,9 @@ class StudentDao implements StudentDaoInterface
     //to getexportpdf 
     public function getExportPdf()
     {
-        $student = Student::all();
+        $student = DB::table('students')
+            ->join('majors','students.major_id', '=','majors.id')
+            ->get();
         view()->share('students', $student);
         $pdf = PDF::loadview('exportpdf');
         return $pdf->download('data.pdf');

@@ -41,7 +41,7 @@
       <td>{{ $item->id }}</td>
       <td>{{ $item->name }}</td>
       <td>{{ $item->email }}</td>
-      <td>{{ $item->Major->name}}</td>
+      <td>{{ $item->major_name}}</td>
       <td>{{ $item->course }}</td>
     </tr>
     @endforeach
