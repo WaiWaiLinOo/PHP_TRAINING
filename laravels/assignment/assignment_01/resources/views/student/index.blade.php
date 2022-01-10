@@ -16,6 +16,7 @@
           <a class="btn btn-info mt-4" href="/export-pdf"> Export PDF</a>
           <a class="btn btn-success mt-4" href="/export-excel"> Export EXCEL</a>
           <a class="btn btn-warning mt-4" href="/export-csv"> Export CSV</a>
+          <a class="btn btn-danger mt-4" href="/mail">Email All data</a>
           <!--import -->
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-primary mt-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -55,7 +56,7 @@
                   <div class="form-group row">
                     <label for="name" class="col-form-label col-sm-1">Name</label>
                     <div class="col-sm-2">
-                      <input type="text" class="form-control input-sm" id="name" name="name" >
+                      <input type="text" class="form-control input-sm" id="name" name="name">
                     </div>
                     <label for="date" class="col-form-label col-sm-1">From</label>
                     <div class="col-sm-2">

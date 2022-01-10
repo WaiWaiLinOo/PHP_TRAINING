@@ -72,4 +72,12 @@ interface StudentServiceInterface
      * @return Object $post saved post
      */
     public function getImportExcel(Request $request);
+
+     /**
+     * To send email to specified email
+     * 
+     * @param Request $request request with inputs
+     * @return bool
+     */
+    public function sendMail(Request $request);
 }

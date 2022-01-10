@@ -6,6 +6,9 @@ use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Contracts\Dao\StudentDaoInterface;
 use App\Contracts\Services\StudentServiceInterface;
+use App\Mail\StudentList;
+use App\Mail\StudentRegistered;
+use Mail;
 
 /**
  * Service class for task.
@@ -98,5 +101,24 @@ class StudentService implements StudentServiceInterface
     public function getImportExcel(Request $request)
     {
         return $this->studentDao->getImportExcel($request);
+    }
+     /**
+     * To send email to specified email
+     * 
+     * @param Request $request request with inputs
+     * @return bool
+     */
+    public function sendMail(Request $request)
+    {
+        $students = $this->studentDao->getStudentList($request);
+        if ($students) {
+            Mail::to($request->email)->send(new StudentList($students));
+            // Check mail sending process has error.
+            if (count(Mail::failures()) > 0) {
+                return redirect('/')->with('status', 'Mail cannot sent!');
+            } else {
+                return true;
+            }
+        }
     }
 }

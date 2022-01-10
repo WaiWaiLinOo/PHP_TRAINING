@@ -11,6 +11,8 @@ use App\Imports\StudentImport;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 use Illuminate\Support\Facades\DB;
+use App\Notifications\WelcomeEmailNotification;
+use Mail;
 
 /**
  * Data accessing object for post
@@ -64,6 +66,7 @@ class StudentDao implements StudentDaoInterface
             $student->profile_image = $filename;
         }
         $student->save();
+        $student->notify(new WelcomeEmailNotification($student));
         return $student;
     }
 

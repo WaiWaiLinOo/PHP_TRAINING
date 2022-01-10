@@ -35,6 +35,7 @@ class StudentController extends Controller
      */
     public function __construct(StudentServiceInterface $studentServiceInterface)
     {
+        $this->middleware('auth');
         $this->studentInterface = $studentServiceInterface;
     }
    
@@ -136,5 +137,33 @@ class StudentController extends Controller
     {
         $student = $this->studentInterface->getImportExcel($request);
         return $student;
+    }
+     /**
+     * Show the form for email to send.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showMailForm()
+    {
+        return view('student.emailForm');
+    }
+
+    /**
+     * Send email
+     * 
+     * @param \Illuminate\Http\Request $request 
+     * @return \Illuminate\Http\Response
+     */
+    public function postMailForm(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+
+        // Check email is sent successfully or not
+        if ($this->studentInterface->sendMail($request)) {
+            return redirect('/')
+                ->with('success', 'Email is sent successfully.');
+        }
     }
 }

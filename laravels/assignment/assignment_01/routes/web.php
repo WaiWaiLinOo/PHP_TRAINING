@@ -11,6 +11,9 @@ Route::post('add-student', [StudentController::class, 'store']);
 Route::get('edit-student/{id}', [StudentController::class, 'edit']);
 Route::put('update-student/{id}', [StudentController::class, 'update']);
 Route::delete('delete-student/{id}', [StudentController::class, 'destroy']);
+//for mail 
+Route::get('/mail', [StudentController::class, 'showMailForm'])->name('showMailForm');
+Route::post('/mail', [StudentController::class, 'postMailForm'])->name('postMailForm');
 //export pdf
 Route::get('/export-pdf', [StudentController::class, 'exportPdf'])->name('exportpdf');
 //export excel
