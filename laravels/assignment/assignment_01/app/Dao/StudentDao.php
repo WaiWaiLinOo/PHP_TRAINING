@@ -116,13 +116,17 @@ class StudentDao implements StudentDaoInterface
      */
     public function deleteStudent($id)
     {
+        
         $student = Student::find($id);
         $destination = 'uploads/students/' . $student->profile_image;
         if (File::exists($destination)) {
             File::delete($destination);
         }
+        DB::transaction(function () use($student) {
         $student->delete();
+         });
         return $student;
+        
     }
 
     
