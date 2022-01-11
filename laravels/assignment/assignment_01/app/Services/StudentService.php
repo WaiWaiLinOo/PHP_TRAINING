@@ -79,25 +79,39 @@ class StudentService implements StudentServiceInterface
         return $this->studentDao->deleteStudent($id);
     }
 
-    //to getexportpdf 
+     /**
+     * To upload student pdf file
+     * @return File Upload pdf file
+     */
     public function getExportPdf()
     {
         return $this->studentDao->getExportPdf();
     }
 
-    //to getexportexcel 
+     /**
+     * To upload student excel file
+     * @return File Upload excel file
+     */
     public function getExportExcel()
     {
         return $this->studentDao->getExportExcel();
     }
 
-    //to getexportcsv 
+     /**
+     * To upload student csv file
+     * @return File Upload CSV file
+     */
     public function getExportCsv()
     {
         return $this->studentDao->getExportCsv();
     }
 
-    //to getimportexcel 
+    /**
+     * To send excel to specified excel
+     * 
+     * @param Request $request request with inputs
+     * @return bool
+     */
     public function getImportExcel(Request $request)
     {
         return $this->studentDao->getImportExcel($request);
@@ -119,6 +133,9 @@ class StudentService implements StudentServiceInterface
             } else {
                 return true;
             }
+        }else
+        {
+            return redirect('/')->with('status', 'Students is absent!');  
         }
     }
 }

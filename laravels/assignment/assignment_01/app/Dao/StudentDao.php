@@ -125,7 +125,11 @@ class StudentDao implements StudentDaoInterface
         return $student;
     }
 
-    //to getexportpdf 
+    
+    /**
+     * To upload student pdf file
+     * @return File Upload pdf file
+     */
     public function getExportPdf()
     {
         $student = DB::table('students')
@@ -136,19 +140,31 @@ class StudentDao implements StudentDaoInterface
         return $pdf->download('data.pdf');
     }
 
-    //to getexportexcel 
+    
+    /**
+     * To upload student excel file
+     * @return File Upload excel file
+     */
     public function getExportExcel()
     {
         return Excel::download(new StudentExport, 'data.xlsx');
     }
 
-    //to getexportcsv 
+    
+    /**
+     * To upload student csv file
+     * @return File Upload CSV file
+     */
     public function getExportCsv()
     {
         return Excel::download(new StudentExport, 'data.csv');
     }
 
-    //to getimportexcel 
+    
+    /**
+     * To upload student excel file
+     * @return File Upload excel file
+     */
     public function getImportExcel(Request $request)
     {
         $data = $request->file('file');

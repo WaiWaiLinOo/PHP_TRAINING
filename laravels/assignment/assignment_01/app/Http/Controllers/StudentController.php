@@ -14,9 +14,6 @@ use PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\StoreStudentRequest;
 use Illuminate\Support\Facades\DB;
-
-
-
 /**
  * This is student controller.
  * This handles Post CRUD processing.
@@ -39,15 +36,26 @@ class StudentController extends Controller
         $this->studentInterface = $studentServiceInterface;
     }
    
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
         $student = $this->studentInterface->getStudentList($request);
         if($student){
-            return view('student.index', compact('student'));
-            //dd($student);
+            //return view('student.index', compact('student'));
+            return view('student.index')->with('student',$student);
         }
      }
 
+     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
 
@@ -111,33 +119,48 @@ class StudentController extends Controller
         }
     }
 
-    //to exportpdf 
+     /**
+     * To download student pdf file
+     * @return File Download pdf file
+     */
     public function exportPdf()
     {
         $student = $this->studentInterface->getExportPdf();
         return $student;
     }
 
-    //to exportexcel 
+     /**
+     * To download student excel file
+     * @return File Download excel file
+     */
     public function  exportExcel()
     {
         $student = $this->studentInterface->getExportExcel();
         return $student;
     }
 
-    //to exportcsv 
+     /**
+     * To download student csv file
+     * @return File Download CSV file
+     */
     public function  exportCsv()
     {
         $student = $this->studentInterface->getExportCsv();
         return $student;
     }
 
-    //to importexcel 
+     /**
+     * Import from an excel file
+     * 
+     * @param \Illuminate\Http\Request $request 
+     * @return \Illuminate\Http\Response
+     */
     public function importExcel(Request $request)
     {
         $student = $this->studentInterface->getImportExcel($request);
         return $student;
     }
+
      /**
      * Show the form for email to send.
      *

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Major;
 use Illuminate\Support\Facades\DB;
 use App\Contracts\Services\StudentServiceInterface;
+use App\Http\Requests\StoreStudentRequest;
 
 /**
  * This is student controller.
@@ -29,6 +30,13 @@ class StudentApiController extends Controller
     {
         $this->studentInterface = $studentServiceInterface;
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return view('studentApi');
@@ -59,27 +67,14 @@ class StudentApiController extends Controller
      * @param PostCreateRequest $request Request form post create
      * @return View post store confirm
      */
-    public function store(Request $request)
+    public function store(StoreStudentRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'course' => 'required',
-            'email' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'status' => 400,
-                'errors' => $validator->messages()
-            ]);
-        } else {
-            $student = $this->studentInterface->saveStudent($request);
+        $student = $this->studentInterface->saveStudent($request);
             if ($student) {
                 return response()->json([
                     'status' => 200,
                     'message' => 'Student Added Successfully.'
                 ]);
-            }
         }
     }
 
@@ -111,21 +106,9 @@ class StudentApiController extends Controller
      * @param PostCreateRequest $request Request form post create
      * @return View post store confirm
      */
-    public function update(Request $request, $id)
+    public function update(StoreStudentRequest $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'course' => 'required',
-            'email' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'status' => 400,
-                'errors' => $validator->messages()
-            ]);
-        } else {
-            $student = $this->studentInterface->updateStudent($request, $id);
+        $student = $this->studentInterface->updateStudent($request, $id);
             if ($student) {
                 return response()->json([
                     'status' => 200,
@@ -136,7 +119,6 @@ class StudentApiController extends Controller
                     'status' => 404,
                     'message' => 'No Student Found.'
                 ]);
-            }
         }
     }
 
